@@ -1,7 +1,7 @@
 {
   "name": "SingnarPay",
   "scripts": {
-    "build": "next build",
+   "build": "prisma generate && next build",
     "ci": "npm run build && npm run typecheck && npm run lint && npm run format:check && npm run test",
     "dev": "next dev",
     "format": "prettier --write .",
@@ -66,5 +66,10 @@
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
+  },
+  "allowScripts": {
+    "@prisma/client@6.19.3": true,
+    "@prisma/engines@6.19.3": true,
+    "prisma@6.19.3": true
   }
 }
