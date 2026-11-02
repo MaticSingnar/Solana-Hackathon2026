@@ -1,6 +1,6 @@
-
 import { NextResponse } from "next/server";
 import { prisma } from "../../lib/prisma";
+import type { Prisma } from "@prisma/client";
 
 export async function POST(request: Request) {
   try {
@@ -48,12 +48,14 @@ export async function POST(request: Request) {
       );
     }
 
-    const order = await prisma.$transaction(async (tx) => {
+    const order = await prisma.$transaction(
+  async (tx: Prisma.TransactionClient) => {
       const productIds = [...quantities.keys()];
 
       const products = await tx.product.findMany({
         where: { id: { in: productIds } },
-      });
+        },
+);
 
       if (products.length !== productIds.length) {
         throw new Error("PRODUCT_NOT_FOUND");
