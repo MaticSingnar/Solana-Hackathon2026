@@ -63,7 +63,7 @@ export async function POST(request: Request) {
 
       let total = 0;
 
-      const orderItems = products.map((product) => {
+      const orderItems = products.map((product: Prisma.ProductGetPayload<object>) => {
         const quantity = quantities.get(product.id)!;
 
         if (product.stock < quantity) {
