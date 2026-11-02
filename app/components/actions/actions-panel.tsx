@@ -12,13 +12,12 @@ import { TokenCard } from "./token-card";
 import { MemoCard } from "./memo-card";
 import { ReceiveSolCard } from "./receive-sol-card";
 import { TransactionHistoryCard } from "./transaction-history-card";
-import type { TransactionRecord } from "./transaction-history-card";
+
 
 const subscribeToHydration = () => () => {};
 
 export function ActionsPanel() {
   const client = useAppClient();
-  const [transactions, setTransactions] = useState<TransactionRecord[]>([]);
   const connected = useConnectedWallet(client);
   const isWalletReady = useIsWalletReady(client);
   const isHydrated = useSyncExternalStore(
